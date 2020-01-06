@@ -5,8 +5,8 @@ import rpyc
 
 from fuse import FUSE, FuseOSError, Operations
 
-HOST = '192.168.1.47'
-PORT = 21079
+HOST = '192.168.1.46'
+PORT = 21078
 
 class Passthrough(Operations):
 	def __init__(self):
@@ -24,7 +24,7 @@ class Passthrough(Operations):
 		
 	def rmdir(self, path):
 		print("Method Invoked: 'rmdir'")
-		return self.conn.root.readdir(path)
+		return self.conn.root.rmdir(path)
 		
 	def mkdir(self, path, mode):
 		print("Method Invoked: 'mkdir'")
@@ -34,7 +34,7 @@ class Passthrough(Operations):
 		
 	def open(self, path, flags, mode=None):
 		print("Method Invoked: 'open'")
-		return self.conn.root.open(path, flags, fh)
+		return self.conn.root.open(path, flags, mode)
 		
 	def unlink(self, path):
 		print("Method Invoked: 'unlink'")
