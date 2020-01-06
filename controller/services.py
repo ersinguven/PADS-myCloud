@@ -85,7 +85,26 @@ class Controller(rpyc.Service):
 				if c not in directory:
 					directory.append(c)
 		return directory
-			
+		
+	def exposed_rmdir(self, path):
+		server = self.find_server(path)
+		conn = self.connect_server(server)
+		return conn.root.rmdir(path)
+		
+	def exposed_open(self, path, flags, mode):
+		server = self.find_server(path)
+		conn = self.connect_server(server)
+		return conn.root.open(path, flags, mode)
+		
+	def exposed_write(self, path, buf, offset, fh):
+		server = self.find_server(path)
+		conn = self.connect_server(server)
+		return conn.root.write(path, flags, mode)
+	
+	def exposed_unlink(self, path):
+		server = self.find_server(path)
+		conn = self.connect_server(server)
+		return conn.root.unlink(path)
 		
 		
 		

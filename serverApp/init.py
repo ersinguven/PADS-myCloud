@@ -6,7 +6,7 @@ import os
 import socket
 
 
-HOST = "localhost"
+HOST = "192.168.1.47"
 CONTROLLER_PORT = 21079
 
 rpyc.core.protocol.DEFAULT_CONFIG['allow_pickle'] = True
@@ -23,7 +23,7 @@ def connect_controller():
 	conn.root.add_server(get_server_info())
 
 def start_server():
-	port = 21269
+	port = 11269
 	server = ThreadedServer(services.serverService, port=port, protocol_config={
 					"allow_pickle":True,
 					"allow_public_attrs":True})

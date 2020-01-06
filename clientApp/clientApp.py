@@ -5,7 +5,7 @@ import rpyc
 
 from fuse import FUSE, FuseOSError, Operations
 
-HOST = 'localhost'
+HOST = '192.168.1.47'
 PORT = 21079
 
 class Passthrough(Operations):
@@ -17,18 +17,14 @@ class Passthrough(Operations):
 			partial = partial[1:]
 		path = os.path.join(self.root, partial)
 		return path
-
-	"""def getattr(self, path, fh=None):
-		print("Method Invoked: 'gettattr'")
-		return self.conn.root.getattr(path, fh)"""
 		
 	def readdir(self, path, fh):
 		print("Method Invoked: 'readdir'")
 		return self.conn.root.readdir(path, fh)
 		
-	"""def rmdir(self, path):
+	def rmdir(self, path):
 		print("Method Invoked: 'rmdir'")
-		return self.conn.root.readdir(path)"""
+		return self.conn.root.readdir(path)
 		
 	def mkdir(self, path, mode):
 		print("Method Invoked: 'mkdir'")
@@ -36,14 +32,13 @@ class Passthrough(Operations):
 		return self.conn.root.mkdir(path, mode)
 		
 		
-	"""def open(self, path, flags, mode=None):
+	def open(self, path, flags, mode=None):
 		print("Method Invoked: 'open'")
-		return self.conn.root.open(path, flags, fh)"""
+		return self.conn.root.open(path, flags, fh)
 		
-	"""def read(self, path, length, offset, fh):
-		print("Method Invoked: 'read'")
-		return self.conn.root.read(path, length, offset, fh)"""
-		
+	def unlink(self, path):
+		print("Method Invoked: 'unlink'")
+		return self.conn.root.unlink(path)
 	
 def mount(ls):
 	if len(ls) < 2:

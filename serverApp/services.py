@@ -36,3 +36,10 @@ class serverService(rpyc.Service):
 	def exposed_echo(self, text):
 		return text
 		
+	def exposed_write(self, path, buf, offset, fh):
+		os.lseek(fh, offset, os.SEEK_SET)
+		return os.write(fh, buf)
+		
+	def exposed_unlink(self, path):
+		a_path = self.abs_path(path)
+		return os.unlink(a_path)
