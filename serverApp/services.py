@@ -2,7 +2,7 @@ import rpyc
 import os
 import pickle
 
-data_path = "/home/ersin-2/Desktop/serverApp"
+data_path = "/home/ersin-2/Desktop/serverApp/data/"
 class serverService(rpyc.Service):
 	def on_connect(self, conn):
 		pass

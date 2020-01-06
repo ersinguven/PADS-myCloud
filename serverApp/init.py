@@ -4,10 +4,10 @@ from rpyc.utils.server import ThreadedServer
 from multiprocessing import Process
 import os
 import socket
+import netifaces as ni
 
-
-HOST = "192.168.1.47"
-CONTROLLER_PORT = 21079
+HOST = "192.168.1.46"
+CONTROLLER_PORT = 21078
 
 rpyc.core.protocol.DEFAULT_CONFIG['allow_pickle'] = True
 
@@ -32,8 +32,8 @@ def start_server():
 def get_server_info():
 	return {
 		"id":socket.gethostname(),
-		"ip":socket.gethostbyname(socket.gethostname()),
-		"port":21269
+		"ip":ni.ifaddresses('enp0s3')[ni.AF_INET][0]['addr'],
+		"port":11269
 		}
 
 if __name__ == "__main__":
